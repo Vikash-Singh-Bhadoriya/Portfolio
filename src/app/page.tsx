@@ -1,65 +1,107 @@
-import Image from "next/image";
+"use client";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="min-h-screen bg-black text-white px-6 py-10 selection:bg-purple-500">
+      
+      {/* HERO */}
+      <section className="mb-16">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-blue-500 text-transparent bg-clip-text"
+        >
+          Hi, I'm Vikash Singh
+        </motion.h1>
+
+        <motion.p 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          transition={{ delay: 0.3 }}
+          className="text-lg text-gray-400"
+        >
+          Android Developer | Kotlin | Jetpack Compose
+        </motion.p>
+
+        <motion.p 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          transition={{ delay: 0.5 }}
+          className="mt-4 text-gray-500 max-w-xl"
+        >
+          I build performant Android apps with clean architecture and real-world usability.
+        </motion.p>
+      </section>
+
+      {/* PROJECTS */}
+      <section className="mb-16">
+        <motion.h2 
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-2xl font-semibold mb-6"
+      >
+        Projects
+      </motion.h2>    
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="p-6 border border-gray-800 rounded-xl hover:bg-gray-900 transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <h3 className="text-xl font-semibold">Workout Timer</h3>
+            <p className="text-gray-400 mt-2">
+              Custom interval training app with voice alerts, background running, and multiple workout modes.
+            </p>
+
+            {/* LINKS */}
+            <div className="mt-4 flex gap-4">
+              <a href="https://github.com/Vikash-Singh-Bhadoriya/Workout-Timer" target="_blank" className="text-blue-400 hover:underline">
+                GitHub
+              </a>
+              <a href="https://play.google.com/store/apps/details?id=com.thefocust.intervaltimer" className="text-green-400 hover:underline">
+                Live
+              </a>
+            </div>
+          </motion.div>
+             
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="p-6 border border-gray-800 rounded-xl hover:bg-gray-900 transition"
           >
-            Documentation
-          </a>
+            <h3 className="text-xl font-semibold">Lock In App</h3>
+            <p className="text-gray-400 mt-2">
+              Custom interval training app with voice alerts, background running, and multiple workout modes.
+            </p>
+
+            {/* LINKS */}
+            <div className="mt-4 flex gap-4">
+              <a href="https://github.com/Vikash-Singh-Bhadoriya/Lock-In" target="_blank" className="text-blue-400 hover:underline">
+                GitHub
+              </a>
+            </div>
+          </motion.div>
+      </section>
+
+      {/* SKILLS */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Skills</h2>
+    
+        <div className="flex flex-wrap gap-3">
+          {["Kotlin", "Jetpack Compose", "MVVM", "Firebase", "Room", "Git"].map((skill) => (
+            <span key={skill} className="px-3 py-1 border border-gray-700 rounded-full text-sm text-gray-300">
+              {skill}
+            </span>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+    </main>
   );
 }
