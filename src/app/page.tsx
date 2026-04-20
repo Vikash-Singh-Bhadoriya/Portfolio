@@ -288,7 +288,7 @@ export default function Home() {
           <motion.h2 variants={item} className="text-3xl font-semibold mb-8 text-center">
             App Portfolio
           </motion.h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 w-full px-4 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full px-4 md:px-12 max-w-5xl mx-auto">
             {apps.map((app) => {
               let github = "#";
               let playstore = "#";
@@ -306,45 +306,53 @@ export default function Home() {
                 playstore = "https://play.google.com/store/apps/details?id=com.vikash.passionpursuit";
               }
               return (
-                <Link href={app.href} key={app.title} tabIndex={0} className="group">
+                <div key={app.title} className="w-full flex group">
                   <motion.div
                     variants={item}
                     whileHover={{ scale: 1.03, boxShadow: "0 0 60px #a855f7aa" }}
-                    className="cursor-pointer p-6 rounded-2xl border border-gray-800 bg-white/10 backdrop-blur-md hover:shadow-[0_0_60px_rgba(168,85,247,0.3)] transition flex flex-col items-center mx-auto min-w-[340px] max-w-[380px] min-h-[420px]"
+                    className="relative p-6 rounded-2xl border border-gray-800 bg-white/10 backdrop-blur-md transition flex flex-col items-center w-full min-h-[500px]"
                   >
-                    <div className="w-full flex justify-center">
+                    <Link href={app.href} className="absolute inset-0 z-0 rounded-2xl" aria-label={`View Case Study: ${app.title}`} />
+                    
+                    <div className="w-full flex justify-center relative z-10 pointer-events-none">
                       <Image
                         src={app.image}
                         alt={app.title}
                         width={340}
                         height={180}
-                        className="rounded-xl mb-4 border border-gray-700 shadow"
+                        className="rounded-xl mb-4 border border-gray-700 shadow object-cover h-[180px]"
                       />
                     </div>
-                    <h3 className="text-xl font-semibold text-purple-300 group-hover:text-purple-400 transition text-center">{app.title}</h3>
-                    <p className="text-gray-300 mt-2 text-center">{app.desc}</p>
-                    <div className="flex gap-4 mt-4">
-                      <a href={github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:scale-110 transition">
-                        <Image src="/github.svg" alt="GitHub" width={28} height={28} />
+                    <div className="relative z-10 flex flex-col flex-grow w-full pointer-events-none text-center mt-4">
+                      <h3 className="text-xl font-semibold text-purple-300 group-hover:text-purple-400 transition">{app.title}</h3>
+                      <p className="text-gray-300 mt-3 text-sm md:text-base max-w-[90%] mx-auto">{app.desc}</p>
+                    </div>
+
+                    <div className="flex gap-6 mt-2 relative z-20">
+                      <a href={github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:scale-110 transition bg-black/40 p-2 rounded-full border border-gray-700 cursor-pointer">
+                        <Image src="/github.svg" alt="GitHub" width={24} height={24} />
                       </a>
-                      <a href={playstore} target="_blank" rel="noopener noreferrer" aria-label="Play Store" className="hover:scale-110 transition">
-                        <Image src="/playstore.svg" alt="Play Store" width={28} height={28} />
+                      <a href={playstore} target="_blank" rel="noopener noreferrer" aria-label="Play Store" className="hover:scale-110 transition bg-black/40 p-2 rounded-full border border-gray-700 cursor-pointer">
+                        <Image src="/playstore.svg" alt="Play Store" width={24} height={24} />
                       </a>
                     </div>
-                    <span className="mt-4 text-purple-400 font-medium group-hover:underline">View Case Study →</span>
+                    
+                    <div className="mt-6 relative z-20 pointer-events-none pb-2">
+                      <span className="text-purple-400 font-medium group-hover:underline">View Case Study →</span>
+                    </div>
                   </motion.div>
-                </Link>
+                </div>
               );
             })}
           </div>
         </section>
 
-        {/* JOURNEY (All Left Timeline) */}
+        {/* JOURNEY (Alternating Timeline) */}
         <section className="mb-32">
           <motion.h2 variants={item} className="text-4xl md:text-5xl font-extrabold mb-14 text-center tracking-tight">
             My Journey
           </motion.h2>
-          <div className="relative max-w-4xl mx-auto px-2 md:px-0">
+          <div className="relative max-w-5xl mx-auto px-4 md:px-0">
             {/* Animated timeline line */}
             <motion.div
               initial={{ height: 0 }}
@@ -405,41 +413,56 @@ export default function Home() {
                 desc: "Open to collaborations, internships, and freelance projects. Focused on building robust, user-friendly Android apps.",
                 icon: "🚀"
               },
-            ].map((step) => (
-              <motion.div
-                key={step.id}
-                variants={item}
-                className="relative flex flex-row items-center mb-14 last:mb-0 z-10 md:justify-start"
-              >
-                {/* Left side (icon/year) */}
-                <div className="w-1/2 flex justify-end pr-8">
-                  <div className="flex flex-col items-center">
-                    <span className="text-3xl md:text-4xl font-bold text-purple-400 drop-shadow-lg">{step.icon}</span>
-                    <span className="block text-sm md:text-base text-purple-300 font-semibold mt-2">{step.year}</span>
+            ].map((step, index) => {
+              const isEven = index % 2 === 0;
+              return (
+                <motion.div
+                  key={step.id}
+                  variants={item}
+                  className="relative flex flex-row items-center justify-between mb-16 last:mb-0 z-10 w-full"
+                >
+                  {/* Left Side */}
+                  <div className={`w-5/12 flex ${isEven ? 'justify-end text-right' : 'justify-end items-center pr-4 md:pr-8'}`}>
+                    {isEven ? (
+                      <div className="bg-white/10 border border-purple-900/30 rounded-xl p-4 md:p-6 shadow-lg w-full max-w-md text-left inline-block hover:shadow-[0_0_40px_rgba(168,85,247,0.2)] transition">
+                        <h3 className="text-lg md:text-2xl font-bold text-purple-200 mb-2">{step.title}</h3>
+                        <p className="text-gray-300 text-sm md:text-base leading-relaxed">{step.desc}</p>
+                      </div>
+                    ) : (
+                      <span className="text-sm md:text-xl text-purple-300 font-bold drop-shadow-md text-right">{step.year}</span>
+                    )}
                   </div>
-                </div>
-                {/* Center dot */}
-                <div className="hidden md:flex flex-col items-center w-0">
-                  <span className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 to-blue-500 border-4 border-black shadow -translate-y-1/2" />
-                </div>
-                {/* Right side (card) */}
-                <div className="w-1/2 flex justify-start pl-8">
-                  <div className="bg-white/10 border border-purple-900/30 rounded-xl p-6 shadow-lg max-w-md text-left">
-                    <h3 className="text-lg md:text-2xl font-bold text-purple-200 mb-2">{step.title}</h3>
-                    <p className="text-gray-200 text-base md:text-lg leading-relaxed">{step.desc}</p>
+                  
+                  {/* Center Icon */}
+                  <div className="w-2/12 flex justify-center items-center relative z-20">
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-black border-4 border-purple-500 shadow-xl flex items-center justify-center hover:scale-110 transition cursor-default">
+                      <span className="text-xl md:text-3xl drop-shadow-lg">{step.icon}</span>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+
+                  {/* Right Side */}
+                  <div className={`w-5/12 flex ${!isEven ? 'justify-start text-left' : 'justify-start items-center pl-4 md:pl-8'}`}>
+                    {!isEven ? (
+                      <div className="bg-white/10 border border-purple-900/30 rounded-xl p-4 md:p-6 shadow-lg w-full max-w-md text-left inline-block hover:shadow-[0_0_40px_rgba(168,85,247,0.2)] transition">
+                        <h3 className="text-lg md:text-2xl font-bold text-purple-200 mb-2">{step.title}</h3>
+                        <p className="text-gray-300 text-sm md:text-base leading-relaxed">{step.desc}</p>
+                      </div>
+                    ) : (
+                      <span className="text-sm md:text-xl text-purple-300 font-bold drop-shadow-md text-left">{step.year}</span>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </section>
 
         {/* TECHNICAL EXPERTISE */}
-        <section id="skills" className="mb-32 max-w-4xl mx-auto">
-          <motion.h2 variants={item} className="text-3xl font-semibold mb-8">
+        <section id="skills" className="mb-32 max-w-5xl mx-auto px-4 md:px-12">
+          <motion.h2 variants={item} className="text-3xl font-semibold mb-8 text-center">
             Technical Expertise
           </motion.h2>
-          <div className="grid md:grid-cols-2 gap-8 text-base">
+          <div className="grid md:grid-cols-2 gap-8 text-base bg-white/5 border border-purple-900/30 rounded-2xl p-8 shadow-lg">
             <div>
               <h3 className="text-purple-400 font-semibold mb-2">Languages</h3>
               <p className="text-gray-300">Kotlin, Java</p>
@@ -460,19 +483,21 @@ export default function Home() {
         </section>
 
         {/* EDUCATION */}
-        <section id="education" className="mb-32 max-w-2xl mx-auto">
-          <motion.h2 variants={item} className="text-3xl font-semibold mb-8">
+        <section id="education" className="mb-32 max-w-5xl mx-auto px-4 md:px-12">
+          <motion.h2 variants={item} className="text-3xl font-semibold mb-8 text-center">
             Education
           </motion.h2>
-          <div className="bg-white/10 p-6 rounded-xl border border-gray-800 shadow-lg mb-6">
-            <h3 className="text-lg font-bold text-purple-400">Bachelor of Technology in Information Technology</h3>
-            <p className="text-gray-300 mt-2">Amity University Gwalior, India</p>
-            <p className="text-gray-400 mt-1">Aug 2025 - Present</p>
-          </div>
-          <div className="bg-white/10 p-6 rounded-xl border border-gray-800 shadow-lg mb-6">
-            <h3 className="text-lg font-bold text-purple-400">Class 11, 12th (CBSE)</h3>
-            <p className="text-gray-300 mt-2">Greenwood Public School</p>
-            <p className="text-gray-400 mt-1">April 2023 - April 2025</p>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white/10 p-6 md:p-8 rounded-xl border border-gray-800 shadow-lg text-left">
+              <h3 className="text-lg md:text-xl font-bold text-purple-400">Bachelor of Technology in Information Technology</h3>
+              <p className="text-gray-300 mt-2">Amity University Gwalior, India</p>
+              <p className="text-gray-400 mt-1">Aug 2025 - Present</p>
+            </div>
+            <div className="bg-white/10 p-6 md:p-8 rounded-xl border border-gray-800 shadow-lg text-left">
+              <h3 className="text-lg md:text-xl font-bold text-purple-400">Class 11, 12th (CBSE)</h3>
+              <p className="text-gray-300 mt-2">Greenwood Public School</p>
+              <p className="text-gray-400 mt-1">April 2023 - April 2025</p>
+            </div>
           </div>
         </section>
 
@@ -521,8 +546,8 @@ export default function Home() {
               </a>
             ))}
           </div>
-          <div className="text-gray-500 text-sm mt-8">
-            © {new Date().getFullYear()} Vikash Singh &mdash; All rights reserved.
+          <div className="text-gray-500 text-sm mt-8" suppressHydrationWarning>
+            {`© ${new Date().getFullYear()} Vikash Singh — All rights reserved.`}
           </div>
         </footer>
       </motion.div>
