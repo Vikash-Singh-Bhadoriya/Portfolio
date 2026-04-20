@@ -7,7 +7,7 @@ export default function Page() {
   return (
     <main className="min-h-screen bg-black text-white px-6 md:px-20 py-16">
 
-      <Link href="/" className="text-gray-400 hover:text-white">← Back</Link>
+      <Link href="/#portfolio" scroll={true} className="text-gray-400 hover:text-white">← Back</Link>
 
       <h1 className="text-4xl font-bold mt-6">
         Task Track

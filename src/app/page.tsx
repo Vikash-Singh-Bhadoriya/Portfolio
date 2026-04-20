@@ -239,7 +239,7 @@ export default function Home() {
         </section>
 
         {/* ABOUT */}
-        <section id="about" className="mb-32 max-w-4xl mx-auto">
+        <section id="about" className="scroll-mt-28 mb-32 max-w-4xl mx-auto">
           <motion.h2 variants={item} className="text-3xl font-semibold mb-6">
             About Me
           </motion.h2>
@@ -284,7 +284,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="portfolio" className="mb-32 max-w-6xl mx-auto">
+        <section id="portfolio" className="scroll-mt-28 mb-32 max-w-6xl mx-auto">
           <motion.h2 variants={item} className="text-3xl font-semibold mb-8 text-center">
             App Portfolio
           </motion.h2>
@@ -458,7 +458,7 @@ export default function Home() {
         </section>
 
         {/* TECHNICAL EXPERTISE */}
-        <section id="skills" className="mb-32 max-w-5xl mx-auto px-4 md:px-12">
+        <section id="skills" className="scroll-mt-28 mb-32 max-w-5xl mx-auto px-4 md:px-12">
           <motion.h2 variants={item} className="text-3xl font-semibold mb-8 text-center">
             Technical Expertise
           </motion.h2>
@@ -483,7 +483,7 @@ export default function Home() {
         </section>
 
         {/* EDUCATION */}
-        <section id="education" className="mb-32 max-w-5xl mx-auto px-4 md:px-12">
+        <section id="education" className="scroll-mt-28 mb-32 max-w-5xl mx-auto px-4 md:px-12">
           <motion.h2 variants={item} className="text-3xl font-semibold mb-8 text-center">
             Education
           </motion.h2>
@@ -502,7 +502,7 @@ export default function Home() {
         </section>
 
         {/* CONTACT / FOOTER */}
-        <footer id="contact" className="py-20 mt-24 bg-gradient-to-t from-black/90 via-purple-900/10 to-transparent text-center border-t border-purple-900/20">
+        <footer id="contact" className="scroll-mt-28 py-20 mt-24 bg-gradient-to-t from-black/90 via-purple-900/10 to-transparent text-center border-t border-purple-900/20">
           <motion.h2 variants={item} className="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight">
             Let’s Work Together
           </motion.h2>

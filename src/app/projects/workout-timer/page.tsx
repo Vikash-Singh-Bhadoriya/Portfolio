@@ -8,7 +8,7 @@ export default function Page() {
     <main className="min-h-screen bg-black text-white px-6 md:px-20 py-16">
 
       {/* BACK */}
-      <Link href="/" className="text-gray-400 hover:text-white">← Back</Link>
+      <Link href="/#portfolio" scroll={true} className="text-gray-400 hover:text-white">← Back</Link>
 
       {/* TITLE */}
       <motion.h1 

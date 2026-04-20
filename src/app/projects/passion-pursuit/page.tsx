@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Page() {
   return (
     <main className="min-h-screen bg-black text-white px-6 md:px-20 py-16">
-      <Link href="/" className="text-gray-400 hover:text-white">← Back</Link>
+      <Link href="/#portfolio" scroll={true} className="text-gray-400 hover:text-white">← Back</Link>
       <h1 className="text-4xl font-bold mt-6">Passion Pursuit</h1>
       <p className="text-gray-400 mt-2 max-w-2xl">
         30-day guided activity planner for daily journaling and progress tracking.
