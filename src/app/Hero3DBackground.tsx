@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { OrbitControls } from "@react-three/drei";
 
 function AnimatedBackground() {
-  const meshRef = useRef();
+  const meshRef = useRef<any>(null);
   useFrame(({ clock }) => {
     if (meshRef.current) {
       meshRef.current.rotation.x = Math.sin(clock.getElapsedTime() / 2) * 0.2;

@@ -4,7 +4,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
 function SpinningCube() {
-  const meshRef = useRef();
+  const meshRef = useRef<any>(null);
   useFrame(() => {
     if (meshRef.current) {
       meshRef.current.rotation.x += 0.01;
