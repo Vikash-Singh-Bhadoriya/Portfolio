@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vikash Singh - Android Developer Portfolio 🚀
 
-## Getting Started
+A modern, highly interactive, and fully responsive 3D developer portfolio website built to showcase my Android development journey, technical expertise, and published applications. 
 
-First, run the development server:
+## 🌟 Live Demo
+**[View Live Portfolio](https://vikash-xi.vercel.app)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛠️ Tech Stack & Technologies Used
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This portfolio is engineered for optimal performance and aesthetics using cutting-edge web technologies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* **Framework:** [Next.js 14+ (App Router)](https://nextjs.org/)
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+* **Animations:** [Framer Motion](https://www.framer.com/motion/) (Scroll-triggered reveals, micro-interactions, hover effects)
+* **3D Graphics:** [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/) & [@react-three/drei](https://github.com/pmndrs/drei) (Interactive 3D Hero Background)
+* **Language:** TypeScript
+* **Hosting:** Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📱 Featured Apps
+This portfolio highlights 4 major Android applications fully architected with **Kotlin, Clean MVVM Architecture, and Jetpack Compose**:
+1. **Workout Timer: HIIT, Tabata** (1K+ Downloads) - `com.thefocust.intervaltimer`
+2. **Task Track** - `com.lifeupgrade.tasktrack`
+3. **QR Code & Barcode Scanner** - `com.vikashsinghapp.qrcodebarcodescanner`
+4. **Passion Pursuit** - `com.vikashsinghapp.passionpursuit`
 
-## Learn More
+## 🚀 Running Locally
 
-To learn more about Next.js, take a look at the following resources:
+Want to run this portfolio locally? Follow these steps:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Vikash-Singh-Bhadoriya/Portfolio.git
+   cd Portfolio
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-## Deploy on Vercel
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the site.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🏗️ Project Structure
+* `src/app/page.tsx`: The heart of the portfolio including the Hero, About, App Grid, Timeline, Skills, and Contact sections.
+* `src/app/globals.css`: Contains crucial global styles, CSS variables, and the `scroll-padding-top` logic allowing smooth anchor jump behaviors without navigation bar overlay.
+* `src/app/Hero3DBackground.tsx`: The `<Canvas>` module utilizing Three.js to render the rotating icosahedron wireframe directly behind the Hero tagline.
+* `src/app/projects/`: Dedicated individual Next.js route case-studies for each Android app detailing the problem-solution scope, tech stack, and high-res screenshots.
+
+## 📬 Contact
+* **Email:** codingwithvikash@gmail.com
+* **LinkedIn:** [Vikash Singh](https://www.linkedin.com/in/mrvikashsingh/)
+* **GitHub:** [@Vikash-Singh-Bhadoriya](https://github.com/Vikash-Singh-Bhadoriya)
+
+---
+*© 2026 Vikash Singh — All rights reserved.*
