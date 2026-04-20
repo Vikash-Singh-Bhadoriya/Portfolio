@@ -171,7 +171,7 @@ export default function Home() {
             </motion.p>
             <motion.div variants={item} className="flex gap-4 flex-wrap justify-center mb-8">
               <a
-                href="/resume.pdf"
+                href="/Resume.pdf"
                 download
                 className="px-6 py-3 bg-white text-black rounded-full font-semibold shadow hover:scale-105 transition"
                 aria-label="Download Resume"
@@ -518,7 +518,7 @@ export default function Home() {
               Contact Me
             </a>
             <a
-              href="/resume.pdf"
+              href="/Resume.pdf"
               download
               className="px-8 py-3 border border-gray-600 rounded-full font-semibold hover:border-purple-500 transition shadow"
               aria-label="Download Resume"
