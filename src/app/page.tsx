@@ -294,16 +294,16 @@ export default function Home() {
               let playstore = "#";
               if (app.title.includes("Workout Timer")) {
                 github = "https://github.com/Vikash-Singh-Bhadoriya/Workout-Timer";
-                playstore = "https://play.google.com/store/apps/details?id=com.vikash.workouttimer";
+                playstore = "https://play.google.com/store/apps/details?id=com.thefocust.intervaltimer";
               } else if (app.title.includes("Task Track")) {
                 github = "https://github.com/Vikash-Singh-Bhadoriya/Task-Track";
-                playstore = "https://play.google.com/store/apps/details?id=com.vikash.tasktrack";
+                playstore = "https://play.google.com/store/apps/details?id=com.lifeupgrade.tasktrack";
               } else if (app.title.includes("QR Code")) {
-                github = "https://github.com/Vikash-Singh-Bhadoriya/QR-Code-Scanner";
-                playstore = "https://play.google.com/store/apps/details?id=com.vikash.qrscanner";
+                github = "https://github.com/Vikash-Singh-Bhadoriya/QR-Code-And-Barcode-Scanner";
+                playstore = "https://play.google.com/store/apps/details?id=com.vikashsinghapp.qrcodebarcodescanner";
               } else if (app.title.includes("Passion Pursuit")) {
                 github = "https://github.com/Vikash-Singh-Bhadoriya/Passion-Pursuit";
-                playstore = "https://play.google.com/store/apps/details?id=com.vikash.passionpursuit";
+                playstore = "https://play.google.com/store/apps/details?id=com.vikashsinghapp.passionpursuit";
               }
               return (
                 <div key={app.title} className="w-full flex group">
