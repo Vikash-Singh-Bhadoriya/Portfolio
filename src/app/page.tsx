@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+const Hero3DBackground = dynamic(() => import("./Hero3DBackground"), { ssr: false });
 
 // Animation variants
 const container = {
@@ -28,9 +30,11 @@ const socials = [
   {
     name: "Instagram",
     url: "https://www.instagram.com/mrvikashsinghofficial/",
-    icon: "/instagram.svg",
+    icon: "/instagram.svg", // use available Instagram icon
   },
 ];
+
+{/* JOURNEY (Alternate Timeline) */}
 
 const apps = [
   {
@@ -48,14 +52,14 @@ const apps = [
   {
     title: "QR Code & Barcode Scanner",
     desc: "Instant scanning, batch-processing, QR code generator, and multi-language UI.",
-    image: "/qr_scanner.png",
-    href: "#", // Add detail page if available
+    image: "/qrcode_graphics.png",
+    href: "/projects/qr-code-scanner",
   },
   {
     title: "Passion Pursuit",
     desc: "30-day guided activity planner for daily journaling and progress tracking.",
-    image: "/passion_pursuit.png",
-    href: "#", // Add detail page if available
+    image: "/passion_pursuit_graphics.png",
+    href: "/projects/passion-pursuit", // Add detail page if available
   },
 ];
 
@@ -83,15 +87,27 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-black text-white px-6 md:px-20 pt-28 pb-16 overflow-x-hidden selection:bg-purple-500 selection:text-white">
       {/* NAVBAR */}
-      <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/60 border-b border-white/10">
-        <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-          <span className="font-bold text-white text-2xl tracking-tight">Vikash</span>
-          <div className="flex gap-6 text-base text-gray-300 font-medium">
-            <a href="#about" className="hover:text-white transition">About</a>
-            <a href="#portfolio" className="hover:text-white transition">Portfolio</a>
-            <a href="#skills" className="hover:text-white transition">Skills</a>
-            <a href="#education" className="hover:text-white transition">Education</a>
-            <a href="#contact" className="hover:text-white transition">Contact</a>
+      <nav className="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-lg border-b border-purple-900/30 shadow-lg">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
+          <span className="font-extrabold text-2xl md:text-3xl tracking-tight text-white drop-shadow-lg select-none">
+            Vikash
+          </span>
+          <div className="flex gap-2 md:gap-6 text-base font-semibold">
+            {[
+              { label: "About", href: "#about" },
+              { label: "Portfolio", href: "#portfolio" },
+              { label: "Skills", href: "#skills" },
+              { label: "Education", href: "#education" },
+              { label: "Contact", href: "#contact" },
+            ].map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="px-3 py-1 rounded-lg text-gray-200 hover:text-white hover:bg-purple-700/30 transition font-bold tracking-wide focus:outline-none focus:ring-2 focus:ring-purple-400"
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
         </div>
       </nav>
@@ -129,35 +145,31 @@ export default function Home() {
         viewport={{ once: true }}
         className="relative z-10"
       >
-        {/* HERO SECTION */}
-        <section className="mb-24 flex flex-col items-center text-center">
-          <motion.div variants={item} className="flex flex-col items-center">
-            <div className="relative w-44 h-44 md:w-56 md:h-56 mb-8">
+        {/* HERO SECTION with integrated 3D background */}
+        <section className="relative flex flex-col items-center justify-center text-center min-h-[70vh] mb-24 overflow-hidden">
+          <Hero3DBackground />
+          <motion.div variants={item} className="relative z-10 flex flex-col items-center w-full">
+            <div className="relative w-36 h-36 md:w-48 md:h-48 mb-6 md:mb-8">
               <Image
                 src="/profile_photo.jpg"
                 alt="Vikash profile photo"
                 fill
                 className="object-cover rounded-full border-4 border-purple-500 shadow-2xl"
                 priority
-                sizes="(max-width: 768px) 176px, 224px"
+                sizes="(max-width: 768px) 144px, 192px"
               />
             </div>
             <motion.h1
               variants={item}
-              className={`text-4xl md:text-7xl font-extrabold leading-tight mb-4`}
+              className="text-4xl md:text-7xl font-extrabold leading-tight mb-4 md:mb-6 tracking-tight drop-shadow-lg"
+              style={{lineHeight: 1.1}}
             >
-              Building{" "}
-              <span
-                className={`text-transparent bg-clip-text bg-gradient-to-r ${gradient} transition-all duration-1000`}
-              >
-                Android Apps
-              </span>{" "}
-              that scale
+              Building <span className={`text-transparent bg-clip-text bg-gradient-to-r ${gradient} transition-all duration-1000`}>Android Apps</span> that scale
             </motion.h1>
-            <motion.p variants={item} className="text-gray-300 mt-2 max-w-xl text-lg md:text-xl">
+            <motion.p variants={item} className="text-gray-200 mt-2 mb-8 max-w-2xl text-lg md:text-2xl font-medium drop-shadow">
               Kotlin • Jetpack Compose • Clean Architecture
             </motion.p>
-            <motion.div variants={item} className="mt-8 flex gap-4 flex-wrap justify-center">
+            <motion.div variants={item} className="flex gap-4 flex-wrap justify-center mb-8">
               <a
                 href="/resume.pdf"
                 download
@@ -174,7 +186,7 @@ export default function Home() {
               </a>
             </motion.div>
             {/* Socials */}
-            <motion.div variants={item} className="flex gap-6 mt-8 justify-center">
+            <motion.div variants={item} className="flex gap-6 mt-2 justify-center">
               {socials.map((s) => (
                 <a
                   key={s.name}
@@ -241,12 +253,11 @@ export default function Home() {
           </motion.p>
         </section>
 
-        {/* WHAT I DO */}
         <section className="mb-32">
-          <motion.h2 variants={item} className="text-3xl font-semibold mb-10">
+          <motion.h2 variants={item} className="text-3xl font-semibold mb-10 text-center">
             What I Do
           </motion.h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="flex flex-col md:flex-row justify-center gap-8">
             {[
               {
                 title: "Android Development",
@@ -264,7 +275,7 @@ export default function Home() {
               <motion.div
                 key={card.title}
                 variants={item}
-                className="p-6 rounded-2xl border border-gray-800 bg-white/10 backdrop-blur-md hover:shadow-[0_0_40px_rgba(168,85,247,0.2)] transition"
+                className="p-6 rounded-2xl border border-gray-800 bg-white/10 backdrop-blur-md hover:shadow-[0_0_40px_rgba(168,85,247,0.2)] transition min-w-[260px] max-w-xs mx-auto md:mx-0"
               >
                 <h3 className="text-lg font-semibold">{card.title}</h3>
                 <p className="text-gray-300 mt-2 text-base">{card.desc}</p>
@@ -273,103 +284,150 @@ export default function Home() {
           </div>
         </section>
 
-        {/* APP PORTFOLIO */}
         <section id="portfolio" className="mb-32 max-w-6xl mx-auto">
           <motion.h2 variants={item} className="text-3xl font-semibold mb-8 text-center">
             App Portfolio
           </motion.h2>
-          <div className="grid md:grid-cols-2 gap-10">
-            {apps.map((app) => (
-              <Link href={app.href} key={app.title} tabIndex={0} className="group">
-                <motion.div
-                  variants={item}
-                  whileHover={{ scale: 1.03, boxShadow: "0 0 60px #a855f7aa" }}
-                  className="cursor-pointer p-6 rounded-2xl border border-gray-800 bg-white/10 backdrop-blur-md hover:shadow-[0_0_60px_rgba(168,85,247,0.3)] transition flex flex-col items-center"
-                >
-                  <div className="w-full flex justify-center">
-                    <Image
-                      src={app.image}
-                      alt={app.title}
-                      width={340}
-                      height={180}
-                      className="rounded-xl mb-4 border border-gray-700 shadow"
-                    />
-                  </div>
-                  <h3 className="text-xl font-semibold text-purple-300 group-hover:text-purple-400 transition">{app.title}</h3>
-                  <p className="text-gray-300 mt-2 text-center">{app.desc}</p>
-                  <span className="mt-4 text-purple-400 font-medium group-hover:underline">View Case Study →</span>
-                </motion.div>
-              </Link>
-            ))}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 w-full px-4 md:px-12">
+            {apps.map((app) => {
+              let github = "#";
+              let playstore = "#";
+              if (app.title.includes("Workout Timer")) {
+                github = "https://github.com/Vikash-Singh-Bhadoriya/Workout-Timer";
+                playstore = "https://play.google.com/store/apps/details?id=com.vikash.workouttimer";
+              } else if (app.title.includes("Task Track")) {
+                github = "https://github.com/Vikash-Singh-Bhadoriya/Task-Track";
+                playstore = "https://play.google.com/store/apps/details?id=com.vikash.tasktrack";
+              } else if (app.title.includes("QR Code")) {
+                github = "https://github.com/Vikash-Singh-Bhadoriya/QR-Code-Scanner";
+                playstore = "https://play.google.com/store/apps/details?id=com.vikash.qrscanner";
+              } else if (app.title.includes("Passion Pursuit")) {
+                github = "https://github.com/Vikash-Singh-Bhadoriya/Passion-Pursuit";
+                playstore = "https://play.google.com/store/apps/details?id=com.vikash.passionpursuit";
+              }
+              return (
+                <Link href={app.href} key={app.title} tabIndex={0} className="group">
+                  <motion.div
+                    variants={item}
+                    whileHover={{ scale: 1.03, boxShadow: "0 0 60px #a855f7aa" }}
+                    className="cursor-pointer p-6 rounded-2xl border border-gray-800 bg-white/10 backdrop-blur-md hover:shadow-[0_0_60px_rgba(168,85,247,0.3)] transition flex flex-col items-center mx-auto min-w-[340px] max-w-[380px] min-h-[420px]"
+                  >
+                    <div className="w-full flex justify-center">
+                      <Image
+                        src={app.image}
+                        alt={app.title}
+                        width={340}
+                        height={180}
+                        className="rounded-xl mb-4 border border-gray-700 shadow"
+                      />
+                    </div>
+                    <h3 className="text-xl font-semibold text-purple-300 group-hover:text-purple-400 transition text-center">{app.title}</h3>
+                    <p className="text-gray-300 mt-2 text-center">{app.desc}</p>
+                    <div className="flex gap-4 mt-4">
+                      <a href={github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:scale-110 transition">
+                        <Image src="/github.svg" alt="GitHub" width={28} height={28} />
+                      </a>
+                      <a href={playstore} target="_blank" rel="noopener noreferrer" aria-label="Play Store" className="hover:scale-110 transition">
+                        <Image src="/playstore.svg" alt="Play Store" width={28} height={28} />
+                      </a>
+                    </div>
+                    <span className="mt-4 text-purple-400 font-medium group-hover:underline">View Case Study →</span>
+                  </motion.div>
+                </Link>
+              );
+            })}
           </div>
         </section>
 
-        {/* JOURNEY (Vertical Timeline with Animated Line & Resume Content) */}
+        {/* JOURNEY (All Left Timeline) */}
         <section className="mb-32">
-          <motion.h2 variants={item} className="text-3xl font-semibold mb-10">
-            Journey
+          <motion.h2 variants={item} className="text-4xl md:text-5xl font-extrabold mb-14 text-center tracking-tight">
+            My Journey
           </motion.h2>
-          <div className="relative max-w-2xl mx-auto pl-6">
-            {/* Animated vertical line */}
+          <div className="relative max-w-4xl mx-auto px-2 md:px-0">
+            {/* Animated timeline line */}
             <motion.div
               initial={{ height: 0 }}
               whileInView={{ height: "100%" }}
-              transition={{ duration: 1, ease: "easeInOut" }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
               viewport={{ once: true }}
-              className="absolute left-3 top-0 w-0.5 bg-gradient-to-b from-purple-500/60 to-blue-500/20"
-              style={{ minHeight: "40px" }}
+              className="absolute left-1/2 top-0 w-1 bg-gradient-to-b from-purple-500/60 to-blue-500/20 -translate-x-1/2 z-0 rounded-full"
+              style={{ minHeight: "40px", height: "100%" }}
               aria-hidden="true"
             />
             {[
-              [
-                "2021",
-                "Began programming journey with Java and basic Android apps. Built foundational skills in software development."
-              ],
-              [
-                "2022",
-                "Transitioned to Kotlin and Jetpack Compose. Started focusing on Clean MVVM Architecture and modern Android development."
-              ],
-              [
-                "Mar 2023",
-                <>
-                  <span className="font-semibold text-white">Workout Timer: HIIT, Tabata</span> published on Play Store.<br />
-                  <span className="text-gray-400">• 1K+ downloads, ad-free, customizable intervals, background running, and motivational features.</span>
-                </>
-              ],
-              [
-                "Aug 2025",
-                <>
-                  <span className="font-semibold text-white">QR Code & Barcode Scanner</span> released.<br />
-                  <span className="text-gray-400">• Instant scanning, batch-processing, QR code generator, and multi-language UI.</span>
-                </>
-              ],
-              [
-                "Jun 2025",
-                <>
-                  <span className="font-semibold text-white">Passion Pursuit</span> launched.<br />
-                  <span className="text-gray-400">• 30-day guided planner for daily journaling and progress tracking.</span>
-                </>
-              ],
-              [
-                "Aug 2025",
-                "Start B.Tech in Information Technology from Amity University Gwalior, India."
-              ],
-              [
-                "2026",
-                "Open to collaborations, internships, and freelance projects. Focused on building robust, user-friendly Android apps."
-              ],
-            ].map(([year, text], idx) => (
+              {
+                id: "2021-start",
+                year: "2021",
+                title: "Started Programming",
+                desc: "Began with Java and basic Android apps. Built foundational skills in software development.",
+                icon: "💻"
+              },
+              {
+                id: "2022-modern",
+                year: "2022",
+                title: "Modern Android Dev",
+                desc: "Transitioned to Kotlin and Jetpack Compose. Focused on Clean MVVM Architecture.",
+                icon: "📱"
+              },
+              {
+                id: "2023-timer",
+                year: "Mar 2023",
+                title: "Workout Timer Published",
+                desc: "1K+ downloads, ad-free, customizable intervals, background running, and motivational features.",
+                icon: "⏱️"
+              },
+              {
+                id: "2025-qr",
+                year: "Aug 2025",
+                title: "QR Code Scanner Released",
+                desc: "Instant scanning, batch-processing, QR code generator, and multi-language UI.",
+                icon: "🔎"
+              },
+              {
+                id: "2025-passion",
+                year: "Jun 2025",
+                title: "Passion Pursuit Launched",
+                desc: "30-day guided planner for daily journaling and progress tracking.",
+                icon: "🔥"
+              },
+              {
+                id: "2025-btech",
+                year: "Aug 2025 (BTech)",
+                title: "B.Tech Begins",
+                desc: "Started B.Tech in Information Technology at Amity University Gwalior, India.",
+                icon: "🎓"
+              },
+              {
+                id: "2026-open",
+                year: "2026",
+                title: "Open to Opportunities",
+                desc: "Open to collaborations, internships, and freelance projects. Focused on building robust, user-friendly Android apps.",
+                icon: "🚀"
+              },
+            ].map((step) => (
               <motion.div
-                key={year + idx}
+                key={step.id}
                 variants={item}
-                className="relative flex items-start gap-4 mb-10 last:mb-0"
+                className="relative flex flex-row items-center mb-14 last:mb-0 z-10 md:justify-start"
               >
-                {/* Dot */}
-                <span className="absolute left-0 top-2 w-4 h-4 rounded-full bg-gradient-to-br from-purple-400 to-blue-500 border-4 border-black shadow" />
-                {/* Year & Description */}
-                <div className="pl-8">
-                  <span className="text-purple-400 font-semibold">{year}</span>
-                  <div className="text-gray-300">{text}</div>
+                {/* Left side (icon/year) */}
+                <div className="w-1/2 flex justify-end pr-8">
+                  <div className="flex flex-col items-center">
+                    <span className="text-3xl md:text-4xl font-bold text-purple-400 drop-shadow-lg">{step.icon}</span>
+                    <span className="block text-sm md:text-base text-purple-300 font-semibold mt-2">{step.year}</span>
+                  </div>
+                </div>
+                {/* Center dot */}
+                <div className="hidden md:flex flex-col items-center w-0">
+                  <span className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 to-blue-500 border-4 border-black shadow -translate-y-1/2" />
+                </div>
+                {/* Right side (card) */}
+                <div className="w-1/2 flex justify-start pl-8">
+                  <div className="bg-white/10 border border-purple-900/30 rounded-xl p-6 shadow-lg max-w-md text-left">
+                    <h3 className="text-lg md:text-2xl font-bold text-purple-200 mb-2">{step.title}</h3>
+                    <p className="text-gray-200 text-base md:text-lg leading-relaxed">{step.desc}</p>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -406,25 +464,30 @@ export default function Home() {
           <motion.h2 variants={item} className="text-3xl font-semibold mb-8">
             Education
           </motion.h2>
-          <div className="bg-white/10 p-6 rounded-xl border border-gray-800 shadow-lg">
+          <div className="bg-white/10 p-6 rounded-xl border border-gray-800 shadow-lg mb-6">
             <h3 className="text-lg font-bold text-purple-400">Bachelor of Technology in Information Technology</h3>
             <p className="text-gray-300 mt-2">Amity University Gwalior, India</p>
             <p className="text-gray-400 mt-1">Aug 2025 - Present</p>
           </div>
+          <div className="bg-white/10 p-6 rounded-xl border border-gray-800 shadow-lg mb-6">
+            <h3 className="text-lg font-bold text-purple-400">Class 11, 12th (CBSE)</h3>
+            <p className="text-gray-300 mt-2">Greenwood Public School</p>
+            <p className="text-gray-400 mt-1">April 2023 - April 2025</p>
+          </div>
         </section>
 
-        {/* CONTACT */}
-        <section id="contact" className="mb-20 text-center">
-          <motion.h2 variants={item} className="text-3xl font-semibold mb-4">
+        {/* CONTACT / FOOTER */}
+        <footer id="contact" className="py-20 mt-24 bg-gradient-to-t from-black/90 via-purple-900/10 to-transparent text-center border-t border-purple-900/20">
+          <motion.h2 variants={item} className="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight">
             Let’s Work Together
           </motion.h2>
-          <motion.p variants={item} className="text-gray-400 mb-6 text-lg">
+          <motion.p variants={item} className="text-gray-300 mb-8 text-lg md:text-xl">
             I’m open to internships, freelance projects, and collaborations.
           </motion.p>
-          <motion.div variants={item} className="flex justify-center gap-4">
+          <motion.div variants={item} className="flex flex-col md:flex-row justify-center gap-4 mb-8">
             <a
               href="mailto:codingwithvikash@gmail.com"
-              className="px-6 py-3 bg-white text-black rounded-full font-semibold hover:scale-105 transition"
+              className="px-8 py-3 bg-white text-black rounded-full font-semibold hover:scale-105 transition shadow"
               aria-label="Send email"
             >
               Contact Me
@@ -432,14 +495,13 @@ export default function Home() {
             <a
               href="/resume.pdf"
               download
-              className="px-6 py-3 border border-gray-600 rounded-full font-semibold hover:border-purple-500 transition"
+              className="px-8 py-3 border border-gray-600 rounded-full font-semibold hover:border-purple-500 transition shadow"
               aria-label="Download Resume"
             >
               Download Resume
             </a>
           </motion.div>
-          {/* Socials again for easy access */}
-          <div className="flex gap-6 mt-8 justify-center">
+          <div className="flex gap-6 mt-6 justify-center mb-8">
             {socials.map((s) => (
               <a
                 key={s.name}
@@ -459,7 +521,10 @@ export default function Home() {
               </a>
             ))}
           </div>
-        </section>
+          <div className="text-gray-500 text-sm mt-8">
+            © {new Date().getFullYear()} Vikash Singh &mdash; All rights reserved.
+          </div>
+        </footer>
       </motion.div>
     </main>
   );
